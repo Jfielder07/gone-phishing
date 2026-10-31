@@ -25,18 +25,3 @@ flagged as phishing, an AI explanation describes why the email looks unsafe.
 | `static/index.html`, `static/styles.css` | The web page |
 | `test_*.py` | Unit tests |
 | `sample_*.eml` | Example emails for testing |
-
-## Running locally
-
-```
-pip install -r requirements.txt
-python -m uvicorn main:app --reload
-```
-
-Then open http://127.0.0.1:8000.
-
-## Running the tests
-
-```
-python -m unittest test_eml_validator test_email_model -v
-```
