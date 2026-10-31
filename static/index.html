@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gone Phishing</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <main class="card">
+    <h1>Gone Phishing</h1>
+    <p class="subtitle">Email Safety Detector — upload an <code>.eml</code> file to check it.</p>
+
+    <div class="upload">
+      <label for="email-file" class="file-button">Choose .eml file</label>
+      <!-- accept=".eml" filters the picker; EmailUploadInterface still validates in case it's bypassed -->
+      <input type="file" id="email-file" accept=".eml,message/rfc822">
+      <span id="file-name" class="file-name">No file selected</span>
+    </div>
+
+    <button id="analyze-btn" type="button">Analyze</button>
+
+    <div id="error-box" class="error" role="alert" hidden></div>
+    <section id="result-box" class="result" aria-live="polite" hidden></section>
+  </main>
+
+  <script src="/static/email_upload_interface.js"></script>
+</body>
+</html>
