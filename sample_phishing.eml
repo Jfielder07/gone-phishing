@@ -1,0 +1,30 @@
+From: PayPal Security <security@paypa1-alerts.com>
+To: josh@example.com
+Subject: =?utf-8?b?4pqg77iPIFVyZ2VudDogWW91ciBhY2NvdW50IGhhcyBiZWVuIHN1c3BlbmRlZA==?=
+Date: Sat, 31 Oct 2026 08:02:00 -0500
+MIME-Version: 1.0
+Content-Type: multipart/alternative; boundary="BOUNDARY123"
+
+--BOUNDARY123
+Content-Type: text/plain; charset="utf-8"
+
+Dear Customer,
+
+We noticed unusual activity on your account and it has been suspended.
+Verify your identity within 24 hours to avoid permanent closure:
+https://www.paypal.com/verify
+
+PayPal Security Team
+
+--BOUNDARY123
+Content-Type: text/html; charset="utf-8"
+
+<html><body>
+<p>Dear Customer,</p>
+<p>We noticed unusual activity on your account and it has been <b>suspended</b>.</p>
+<p>Verify your identity within 24 hours to avoid permanent closure:
+<a href="http://paypa1-alerts.com/login.php?id=8812">https://www.paypal.com/verify</a></p>
+<p>PayPal Security Team</p>
+</body></html>
+
+--BOUNDARY123--
