@@ -1,8 +1,5 @@
 """
-Step 1: look at the data before training on it.
-
-Run from the project folder:
-    python -m ml.explore_data
+First, we look at the data before training on it.
 """
 from ml.data import DATA_DIR, PHISHING, SOURCES, load_emails
 

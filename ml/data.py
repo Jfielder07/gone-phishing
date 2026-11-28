@@ -3,11 +3,10 @@ Loading and cleaning the training data.
 
 Three kinds of source can be used, all kept in the ml/data/ folder:
 
-  CSV files   from the "Phishing Email Curated Datasets" collection
-              (Champa, Rabbi & Zibran, https://zenodo.org/records/8339691, CC BY 4.0).
+  CSV files   from https://zenodo.org/records/8339691
               Columns include subject, body and label (1 = phishing/spam, 0 = legitimate).
   .eml folder a folder of email files, e.g. the phishing_pot collection
-              (https://github.com/rf-peixoto/phishing_pot, CC BY-NC 4.0) or your own emails.
+              (https://github.com/rf-peixoto/phishing_pot or your own emails.
   .mbox file  a mailbox export, e.g. from Google Takeout or Thunderbird.
 
 Emails read from .eml folders and .mbox files go through the same Email class
@@ -21,12 +20,12 @@ from pathlib import Path
 import pandas as pd
 
 from email_model import Email
+from ml.text import MAX_CHARS, build_text, email_to_text  # noqa: F401  (re-exported for the scripts)
 
 DATA_DIR = Path(__file__).parent / "data"
 REAL_TEST_DIR = DATA_DIR / "real_test"  # never used for training: see evaluate_real.py
 PHISHING = 1
 LEGITIMATE = 0
-MAX_CHARS = 20_000  # very long emails are cut down so training stays fast
 RANDOM_STATE = 42
 
 # Which sources to train on. Each line is:
@@ -48,24 +47,6 @@ SOURCES = [
     ("my_inbox.mbox",      "legit",    None),   # your own email, exported as a mailbox file
     ("my_legit_emails",    "legit",    None),   # your own email, as a folder of .eml files
 ]
-
-
-def build_text(subject, body):
-    """Combine subject and body into the single piece of text the model reads."""
-    return f"{subject or ''}\n\n{body or ''}".strip()[:MAX_CHARS]
-
-
-def email_to_text(email):
-    """
-    Text for an Email object: subject, body, then any links that aren't already
-    written in the body (links hidden behind HTML buttons only show up in email.links).
-    Used for training AND prediction, so both see text built the same way.
-    """
-    body = email.get_body()
-    hidden_links = [link for link in email.links if link not in body]
-    if hidden_links:
-        body = body + "\n" + "\n".join(hidden_links)
-    return build_text(email.subject, body)
 
 
 def _pick(items, limit):

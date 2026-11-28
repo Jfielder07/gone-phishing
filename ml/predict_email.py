@@ -1,5 +1,5 @@
 """
-Step 4: try the saved model on real .eml files.
+Used for manually testing individual emails. Not used by the program. 
 
 Run from the project folder:
     python -m ml.predict_email sample_phishing.eml sample_safe.eml

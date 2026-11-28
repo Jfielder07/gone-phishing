@@ -1,5 +1,5 @@
 """
-Step 3: improve the model by searching for better settings and a better threshold.
+Model tuning script, used for adjusting settings to determine the best ones for the model. 
 
 Run from the project folder (this takes longer than train_model.py):
     python -m ml.tune_model

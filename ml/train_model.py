@@ -1,10 +1,8 @@
 """
-Step 2: compare models, train the best one, test it, and save it.
+Various tests for comparing/training new models
 
 Run from the project folder:
     python -m ml.train_model                          # compare all, then train logistic regression
-    python -m ml.train_model --model naive_bayes      # train a different model
-    python -m ml.train_model --no-signals             # words only, to see if the signals help
     python -m ml.train_model --skip-compare           # just train and test (faster)
     python -m ml.train_model --sample 5000            # use 5,000 emails for a quick trial run
 """
