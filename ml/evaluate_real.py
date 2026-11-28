@@ -1,12 +1,5 @@
 """
-Step 5: score the model on YOUR real-world test emails.
-
-Put .eml files the model has never trained on into:
-    ml/data/real_test/legit/      your own normal emails
-    ml/data/real_test/phishing/   real phishing (e.g. some held back from phishing_pot)
-
-Run from the project folder:
-    python -m ml.evaluate_real
+Used to score the model on real-world test emails.
 
 The dataset test score shows how the model does on emails like its training data.
 This shows how it does on the email it will actually meet.
