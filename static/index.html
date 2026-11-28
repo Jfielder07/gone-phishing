@@ -4,25 +4,77 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Gone Phishing</title>
+  <meta name="description" content="Check whether an email is likely phishing. Upload an .eml file and get a 0-100 safety score with an explanation.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Lexend:wght@300;400;500&display=swap">
   <link rel="stylesheet" href="/static/styles.css">
 </head>
 <body>
-  <main class="card">
-    <h1>Gone Phishing</h1>
-    <p class="subtitle">Email Safety Detector — upload an <code>.eml</code> file to check it.</p>
+  <div class="page">
+    <header class="hero">
+      <div class="shapes" aria-hidden="true">
+        <span class="shape shape--purple"></span>
+        <span class="shape shape--yellow"></span>
+        <span class="shape shape--circle"></span>
+        <span class="shape shape--orange"></span>
+        <span class="shape shape--teal"></span>
+        <span class="shape shape--lilac"></span>
+      </div>
+      <div class="brand">
+        <svg class="brand__hook" viewBox="0 0 48 48" aria-hidden="true">
+          <path d="M30 4v22a10 10 0 1 1-20 0v-4" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"/>
+          <path d="M10 22l-5 7" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"/>
+          <circle cx="30" cy="5" r="3.5" fill="currentColor"/>
+        </svg>
+        <h1>Gone Phishing</h1>
+      </div>
+      <p class="tagline">Not sure about an email? Drop it in. We'll tell you if it's bait.</p>
+      <ul class="steps">
+        <li><span class="steps__num">1</span><span>Save the suspicious email as an <b>.eml</b> file</span></li>
+        <li><span class="steps__num">2</span><span>Upload it and click <b>Analyze</b></span></li>
+        <li><span class="steps__num">3</span><span>Get a 0–100 safety score and, for phishing, an explanation</span></li>
+      </ul>
+    </header>
 
-    <div class="upload">
-      <label for="email-file" class="file-button">Choose .eml file</label>
-      <!-- accept=".eml" filters the picker; EmailUploadInterface still validates in case it's bypassed -->
-      <input type="file" id="email-file" accept=".eml,message/rfc822">
-      <span id="file-name" class="file-name">No file selected</span>
-    </div>
+    <main class="panel">
+      <h2 class="panel__title">Check an email</h2>
 
-    <button id="analyze-btn" type="button">Analyze</button>
+      <!-- The input stays keyboard-focusable; the drop zone is its visible label -->
+      <input type="file" id="email-file" class="visually-hidden" accept=".eml,message/rfc822">
+      <label for="email-file" id="drop-zone" class="drop-zone">
+        <svg class="drop-zone__icon" viewBox="0 0 48 48" aria-hidden="true">
+          <rect x="5" y="11" width="38" height="28" rx="4" fill="none" stroke="currentColor" stroke-width="3"/>
+          <path d="M6 13l18 14 18-14" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+        </svg>
+        <span class="drop-zone__title">Drop your .eml file here</span>
+        <span class="drop-zone__hint">or click to browse</span>
+        <span id="file-name" class="drop-zone__file">No file selected</span>
+      </label>
 
-    <div id="error-box" class="error" role="alert" hidden></div>
-    <section id="result-box" class="result" aria-live="polite" hidden></section>
-  </main>
+      <button id="analyze-btn" class="analyze-btn" type="button">Analyze</button>
+
+      <div id="error-box" class="error" role="alert" hidden></div>
+      <section id="result-box" class="result" aria-live="polite" hidden></section>
+
+      <details class="help">
+        <summary>How do I save an email as an .eml file?</summary>
+        <ul>
+          <li><b>Gmail:</b> open the email, click the three-dot menu next to Reply, then <b>Download message</b>.</li>
+          <li><b>Outlook on the web:</b> open the email, click the three-dot menu, then <b>Download</b> (or <b>Save as</b>).</li>
+          <li><b>Apple Mail:</b> drag the email from your inbox onto the desktop.</li>
+        </ul>
+      </details>
+    </main>
+  </div>
+
+  <footer class="privacy">
+    <p><b>Privacy notice:</b> Emails classified as phishing are saved to our database along with their analysis.
+      To generate explanations, part of each phishing email is sent to Google's Gemini API. On this free service,
+      Google may use that content to improve its products and train its AI models, and human reviewers may read it.
+      Emails classified as safe are not saved or sent to Gemini. Please don't upload emails containing
+      passwords, financial details or other sensitive personal information.</p>
+  </footer>
 
   <script src="/static/email_upload_interface.js"></script>
 </body>
